@@ -9,32 +9,64 @@
 <body>
     <a href="images.html">Upload images</a>
     <div>
+        <!-- for="SignIn" -->
+        <h1>Datos Lobby</h1>
 
-        <h1>Sign in</h1>
+        <label>Ingresar Id lobbie</label><br>
+        <input type="text" id="idLobbies" /><br><br><br>
 
-        <label for="SignIn">Enter you username</label><br>
-        <input type="text" id="SignIn" /><br><br><br>
+        <label>duracion</label><br>
+        <input type="text" id="Duracion" /><br><br>
 
-        <label>Enter your password</label><br>
-        <input type="text" id="password" /><br><br>
+        <label>ubicacion</label><br>
+        <input type="text" id="Ubicacion" /><br><br>
 
-        <label>Repeat your password</label><br>
-        <input type="text" id="passwordRepeat" /><br><br>
+        <button id="RegisterButtonLonnies">Sign In</button>
+    </div>
+    <div>
+        <!-- for="SignIn" -->
+        <h1>Datos jugador</h1>
 
-        <button id="SignInButton">Sign In</button>
+        <label>Ingresar Id del jugador</label><br>
+        <input type="text" id="idJugadores" /><br><br><br>
+
+        <label>Ingresar Tiempo de juego</label><br>
+        <input type="text" id="TiempoDeJuego" /><br><br>
+
+        <label>Ingresar Frecuencia De Disparo</label><br>
+        <input type="text" id="FrecuenciaDeDisparo" /><br><br>
+
+        <label>Ingresar cantidad de muertes</label><br>
+        <input type="text" id="NumeroDeMuertes" /><br><br><br>
+
+        <label>INgresar KillRatio</label><br>
+        <input type="text" id="KillRatio" /><br><br>
+
+        <label>Cantidad de dinero</label><br>
+        <input type="text" id="CantidadDeDinero" /><br><br>
+
+        <button id="RegisterButton">Sign In</button>
     </div>
 
     <div>
 
-        <h1>Log In</h1>
+        <h1>Propiedades</h1>
 
-        <label for="LogIn">Enter you username</label><br>
-        <input type="text" id="LogIn" /><br><br><br>
+        <label>Entrar id de propiedades</label><br>
+        <input type="text" id="idPropiedades" /><br><br><br>
 
-        <label for="LogPassword">Enter your password</label><br>
-        <input type="text" id="LogPassword" /><br><br>
+        <label>Cantidad de Inmuebles</label><br>
+        <input type="text" id="Inmuebles" /><br><br>
 
-        <button id="LogInButton">Log In</button>
+        <label>Cantidad de armas</label><br>
+        <input type="text" id="Propiedadescol" /><br><br>
+
+        <label>Cantidad de Vehiculos</label><br>
+        <input type="text" id="Vehiculos" /><br><br>
+
+        <button id="RegisterButtonPropiedades">Log In</button>
     </div>
-    <script src="frontend/login.js"></script>
+    <script src="frontend/register.js"></script>
+    <script src="frontend/lobby.js"></script>
+    <script src="frontend/Propiedades.js"></script>
 </body>

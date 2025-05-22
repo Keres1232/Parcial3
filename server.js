@@ -50,18 +50,20 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 
 // POST /register — insertar usuario en base de datos SQL
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) return res.status(400).send("Missing fields.");
+  const { idJugadores, TiempoDeJuego, FrecuenciaDeDisparo, NumeroDeMuertes, KillRatio, CantidadDeDinero } = req.body;
+  if (!idJugadores || !TiempoDeJuego || !FrecuenciaDeDisparo || !NumeroDeMuertes || !KillRatio || !CantidadDeDinero )
+     return res.status(400).send("Missing fields.");
 
   const db = new SqlConnection();
 
   try {
     await db.connectToDb();
     await db.query(
-      "INSERT INTO user (iduser, password) VALUES (?, ?)",
-      [username, password]
-    );
-    res.status(200).send("User registered.");
+  "INSERT INTO jugadores (idJugadores, TiempoDeJuego, FrecuenciaDeDisparo, NumeroDeMuertes, KillRatio, CantidadDeDinero, Lobbies_idLobbies) VALUES (?, ?, ?, ?, ?, ?, 0)",
+  [idJugadores, TiempoDeJuego, FrecuenciaDeDisparo, NumeroDeMuertes, KillRatio, CantidadDeDinero]
+   );
+
+    res.status(200).send("jugadores registered.");
   } catch (err) {
     console.error("SQL error:", err);
     res.status(500).send("Error registering user.");
@@ -69,6 +71,55 @@ app.post('/register', async (req, res) => {
     await db.closeConnection();
   }
 });
+
+// POST /register — insertar usuario en base de datos SQL
+app.post('/registerlobbies', async (req, res) => {
+  const { idLobbies, Duracion, Ubicacion} = req.body;
+  if (!idLobbies || !Duracion || !Ubicacion)
+     return res.status(400).send("Missing fields.");
+
+  const db = new SqlConnection();
+
+  try {
+    await db.connectToDb();
+    await db.query(
+  "INSERT INTO lobbies (idLobbies, Duracion, Ubicacion) VALUES (?, ?, ?)",
+  [idLobbies, Duracion, Ubicacion]
+   );
+
+    res.status(200).send("jugadores registered.");
+  } catch (err) {
+    console.error("SQL error:", err);
+    res.status(500).send("Error registering user.");
+  } finally {
+    await db.closeConnection();
+  }
+});
+
+app.post('/registerPropiedades', async (req, res) => {
+  const { idPropiedades, Inmuebles, Propiedadescol, Vehiculos } = req.body;
+  if (!idPropiedades || !Inmuebles || !Propiedadescol || !Vehiculos )
+     return res.status(400).send("Missing fields.");
+
+  const db = new SqlConnection();
+
+  try {
+    await db.connectToDb();
+    await db.query(
+  "INSERT INTO propiedades (idPropiedades, Inmuebles, Propiedadescol, Vehiculos, Jugadores_idJugadores, Jugadores_Lobbies_idLobbies) VALUES (?, ?, ?, ?, 4, 0)",
+  [idPropiedades, Inmuebles, Propiedadescol, Vehiculos]
+   );
+
+    res.status(200).send("Propiedades registradas.");
+  } catch (err) {
+    console.error("SQL error:", err);
+    res.status(500).send("Error registering user.");
+  } finally {
+    await db.closeConnection();
+  }
+});
+
+
 
 // GET /user/:username — consultar usuario en base de datos SQL
 app.get('/user/:username', async (req, res) => {
