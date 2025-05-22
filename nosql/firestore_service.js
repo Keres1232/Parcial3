@@ -1,14 +1,7 @@
-const { db } = require('./firebase_init');
-const {
-  collection,
-  getDocs,
-  getDoc,
-  addDoc,
-  setDoc,
-  doc
-} = require('firebase-admin/firestore');
+import { db } from './firebase_init.js';
+import { collection, getDocs, getDoc, addDoc, setDoc, doc } from 'firebase/firestore';
 
-class FirestoreService {
+export class FirestoreService {
   constructor(collectionName) {
     this.collectionRef = collection(db, collectionName);
   }
@@ -45,5 +38,3 @@ class FirestoreService {
   }
   
 }
-
-module.exports = FirestoreService;

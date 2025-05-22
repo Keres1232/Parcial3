@@ -1,16 +1,16 @@
-const { db } = require('./firebase_init.js');
-const {
-  collection,
-  query,
-  where,
-  orderBy,
-  limit,
-  startAt,
-  endAt,
-  getDocs
-} = require('firebase-admin/firestore');
+import { db } from './firebase_init.js';
+import {
+    collection,
+    query,
+    where,
+    orderBy,
+    limit,
+    startAt,
+    endAt,
+    getDocs
+} from 'firebase/firestore';
 
-class FirestoreQuery {
+export class FirestoreQuery {
     constructor(collectionName) {
         this.collectionRef = collection(db, collectionName);
     }
@@ -72,4 +72,3 @@ class FirestoreQuery {
         return results;
     }
 }
-module.exports = FirestoreQuery;
