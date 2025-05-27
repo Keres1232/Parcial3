@@ -168,3 +168,18 @@ app.post('/uploadsql', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+// GET /jugadores — obtener todos los jugadores
+app.get('/jugadores', async (req, res) => {
+  const db = new SqlConnection();
+  try {
+    await db.connectToDb();
+    const result = await db.query("SELECT * FROM jugadores");
+    res.status(200).json(result);
+  } catch (err) {
+    console.error("SQL error:", err);
+    res.status(500).send("Error retrieving players.");
+  } finally {
+    await db.closeConnection();
+  }
+});
